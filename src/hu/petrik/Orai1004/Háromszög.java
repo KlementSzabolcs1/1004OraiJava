@@ -73,7 +73,8 @@ public class Háromszög extends Sokszog {
         }
     }
 
-    private double getKerulet(){
+    @Override
+    public double getKerulet(){
 
         return this.getA() + this.getB() + this.getC();
     }
@@ -81,7 +82,9 @@ public class Háromszög extends Sokszog {
     private double getS(){
         return getKerulet() / 2;
     }
-    private double getTerulet(){
+
+    @Override
+    public double getTerulet(){
         return Math.sqrt(this.getS() * (this.getS() - this.getA()) * (this.getS() - this.getB())
                 * (this.getS() - this.getC()));
     }
@@ -89,7 +92,7 @@ public class Háromszög extends Sokszog {
 
     @Override
     public String toString() {
-        return String.format("Háromszög: a = %f - b = %f - c = %f - K: %f - T: %f",this.getA(),this.getB(),this.getC(),
-                this.getKerulet(),this.getTerulet());
+        return String.format("Háromszög: a = %-10.3f b = %-10.3f c = %-10.3f%s",this.getA(),this.getB(),this.getC(),
+                super.toString());
     }
 }
