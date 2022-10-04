@@ -4,10 +4,34 @@ public class Háromszög extends Sokszog {
     private Double b;
     private Double c;
 
+
+    public Háromszög(){
+        super(getVeletlenOldal());
+        this.b = getVeletlenOldal();
+        this.c = getVeletlenOldal();
+        while (!isSzerkesztheto()) {
+            super.setA(getVeletlenOldal());
+            this.b = getVeletlenOldal();
+            this.c = getVeletlenOldal();
+        }
+    }
+
+    private static double getVeletlenOldal() {
+
+        return Math.random() * 10 + 5;
+    }
+
+
     public Háromszög(Double a, Double b, Double c) {
         super(a);
         this.b = b;
         this.c = c;
+        if (!this.isSzerkesztheto()) {
+            throw new IllegalArgumentException("A megadott hárömszög nem megszerkeszthető!");
+        }
+        else {
+
+        }
     }
 
     public Double getB() {
@@ -20,13 +44,27 @@ public class Háromszög extends Sokszog {
 
     public void setB(Double b) {
         this.b = b;
+        if (!this.isSzerkesztheto()) {
+            throw new IllegalArgumentException("A megadott hárömszög nem megszerkeszthető!");
+        }
     }
 
     public void setC(Double c) {
         this.c = c;
+        if (!this.isSzerkesztheto()) {
+            throw new IllegalArgumentException("A megadott hárömszög nem megszerkeszthető!");
+        }
     }
 
-    private boolean getSzerkesztheto(){
+    @Override
+    public void setA(Double a) {
+        super.setA(a);
+        if (!this.isSzerkesztheto()) {
+            throw new IllegalArgumentException("A megadott hárömszög nem megszerkeszthető!");
+        }
+    }
+
+    private boolean isSzerkesztheto(){
         if (this.getA() + b <= c || this.getA() + c <= b || b + c <= this.getA()){
             return false;
         }
@@ -48,4 +86,10 @@ public class Háromszög extends Sokszog {
                 * (this.getS() - this.getC()));
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("Háromszög: a = %f - b = %f - c = %f - K: %f - T: %f",this.getA(),this.getB(),this.getC(),
+                this.getKerulet(),this.getTerulet());
+    }
 }
