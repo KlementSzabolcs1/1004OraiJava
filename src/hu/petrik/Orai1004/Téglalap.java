@@ -27,7 +27,7 @@ public class Téglalap extends Sokszog {
 
     @Override
     public String toString() {
-        return String.format("Téglalap: a = %-10.3f -  b = %-10.3f - K: %-10.3f - T: %-10.3f",
+        return String.format("Téglalap: a = %-10.3f b = %-10.3f %s",
                 this.getA(), this.b, super.toString());
     }
 }
